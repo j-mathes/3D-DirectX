@@ -8,7 +8,7 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 //
-//Special thanks to albinopapa https://github.com/albinopapa for contributing to improve this code
+// Special thanks to albinopapa https://github.com/albinopapa for contributing to improve this code
 
 #include "Window.h"
 #include <stdexcept>
@@ -16,7 +16,6 @@
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 Window::Window()
 {
-
 }
 
 bool Window::init()
@@ -32,7 +31,7 @@ bool Window::init()
 	wc.lpszClassName = "MyWindowClass";
 	wc.lpfnWndProc = &WndProc;
 
-	// If the registration of class will fail, the function will return false
+	// If the registration of class fails, the function will return false
 	if (!RegisterClassEx(&wc))
 		throw std::runtime_error("Failed to register WNDCLASSEX.");
 
@@ -44,7 +43,7 @@ bool Window::init()
 	const auto width = rect.right - rect.left;
 	const auto height = rect.bottom - rect.top;
 
-	//Creation of the window
+	//Creation the window
 	m_hwnd = CreateWindowEx(
 		WS_EX_OVERLAPPEDWINDOW,
 		"MyWindowClass",
@@ -59,11 +58,11 @@ bool Window::init()
 		nullptr,
 		this);
 
-	//if the creation fail return false
+	// If the creation fails return false
 	if (!m_hwnd)
 		throw std::runtime_error("Filed to initialize Window.");
 
-	//show up the window
+	// Display the window
 	ShowWindow(m_hwnd, SW_SHOW);
 	return true;
 }
@@ -97,7 +96,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 		PostQuitMessage(0);
 		break;
 	}
-
 
 	default:
 		return DefWindowProc(hwnd, msg, wparam, lparam);

@@ -13,12 +13,9 @@
 #pragma once
 #include <Windows.h>
 
-
-
 class Window
 {
 public:
-	//Initialize the window
 	Window();
 	bool init();
 	void broadcast();
@@ -27,15 +24,16 @@ public:
 	RECT getClientWindowRect();
 	void setHWND(HWND hwnd);
 
-	//EVENTS
+	// Events
 	virtual void onCreate();
 	virtual void onUpdate();
 	virtual void onDestroy();
 
-	//Release the window
+	// Release the window
 	~Window();
+
 protected:
 	HWND m_hwnd = nullptr;
-	//set this flag to true to indicate that the window is initialized and running
+	// Set this flag to true to indicate that the window is initialized and running
 	bool m_is_run = true;
 };

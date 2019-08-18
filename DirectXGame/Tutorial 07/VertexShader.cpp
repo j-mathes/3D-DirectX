@@ -1,7 +1,6 @@
 #include "VertexShader.h"
 #include "GraphicsEngine.h"
 
-
 VertexShader::VertexShader()
 {
 }

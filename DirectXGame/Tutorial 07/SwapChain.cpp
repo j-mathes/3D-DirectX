@@ -1,7 +1,6 @@
 #include "SwapChain.h"
 #include "GraphicsEngine.h"
 
-
 SwapChain::SwapChain()
 {
 }
@@ -52,7 +51,6 @@ bool SwapChain::release()
 	delete this;
 	return true;
 }
-
 
 SwapChain::~SwapChain()
 {

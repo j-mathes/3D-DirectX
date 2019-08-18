@@ -50,7 +50,6 @@ bool GraphicsEngine::init()
 	return true;
 }
 
-
 bool GraphicsEngine::release()
 {
 	if (m_vs)m_vs->Release();
@@ -78,7 +77,6 @@ SwapChain * GraphicsEngine::createSwapChain()
 {
 	return new SwapChain();
 }
-
 
 DeviceContext * GraphicsEngine::getImmediateDeviceContext()
 {
@@ -136,7 +134,6 @@ bool GraphicsEngine::setShaders()
 	m_imm_context->PSSetShader(m_ps, nullptr, 0);
 	return true;
 }
-
 
 GraphicsEngine * GraphicsEngine::get()
 {

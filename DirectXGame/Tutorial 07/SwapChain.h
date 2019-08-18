@@ -2,6 +2,7 @@
 #include <d3d11.h>
 
 class DeviceContext;
+
 class SwapChain
 {
 public:

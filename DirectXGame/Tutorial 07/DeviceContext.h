@@ -19,7 +19,9 @@ public:
 	void setVertexShader(VertexShader* vertex_shader);
 
 	bool release();
+	
 	~DeviceContext();
+
 private:
 	ID3D11DeviceContext * m_device_context;
 };

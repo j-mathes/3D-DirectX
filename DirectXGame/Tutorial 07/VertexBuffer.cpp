@@ -11,7 +11,6 @@
 #include "VertexBuffer.h"
 #include "GraphicsEngine.h"
 
-
 VertexBuffer::VertexBuffer() :m_layout(0), m_buffer(0)
 {
 }
@@ -67,7 +66,6 @@ bool VertexBuffer::release()
 	delete this;
 	return true;
 }
-
 
 VertexBuffer::~VertexBuffer()
 {
