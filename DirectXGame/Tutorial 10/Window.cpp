@@ -37,7 +37,7 @@ bool Window::init()
 
 	// When you create a window the dimensions include the non-client area such as the 
 	// border and title bar, I'd use the AdjustWindowRectEx API
-	RECT rect = { 0,0,1024,768 };
+	RECT rect = { 0, 0, 1024, 768 };
 	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, FALSE, WS_EX_OVERLAPPEDWINDOW);
 
 	const auto width = rect.right - rect.left;

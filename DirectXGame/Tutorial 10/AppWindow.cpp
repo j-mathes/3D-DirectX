@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Vector3D.h"
 #include "Matrix4x4.h"
+#include <math.h>
 
 struct vertex
 {
@@ -25,13 +26,29 @@ void AppWindow::updateQuadPosition()
 	constant cc;
 	cc.m_time = ::GetTickCount();
 
-	cc.m_world.setTranslation(Vector3D(0, 0, 0));
+	m_delta_pos += m_delta_time / 2.0f;
+	if (m_delta_pos > 1.0f)
+	{
+		m_delta_pos = 0;
+	}
+
+	Matrix4x4 temp;
+
+	m_delta_scale += m_delta_time / 0.15f;
+
+	//cc.m_world.setTranslation(Vector3D::lerp(Vector3D(-2,-2,0),Vector3D(2,2,0),m_delta_pos));
+	cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale)+1.0f)/2.0f));
+	
+	temp.setTranslation(Vector3D::lerp(Vector3D(-1.5, -1.5, 0), Vector3D(1.5, 1.5, 0), m_delta_pos));
+
+	cc.m_world *= temp;
+
 	cc.m_view.setIdentity();
 	cc.m_proj.setOrthoLH(
-		(this->getClientWindowRect().right - this->getClientWindowRect().left) / 400.0f,
-		(this->getClientWindowRect().bottom - this->getClientWindowRect().top) / 400.0f,
-		-4.0f,
-		4.0f
+		(this->getClientWindowRect().right - this->getClientWindowRect().left) / 100.0f,
+		(this->getClientWindowRect().bottom - this->getClientWindowRect().top) / 100.0f,
+		-1.0f,
+		1.0f
 		);
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
@@ -102,6 +119,11 @@ void AppWindow::onUpdate()
 	// Draw
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
 	m_swap_chain->present(true);
+
+	m_old_delta = m_new_delta;
+	m_new_delta = ::GetTickCount();
+	m_delta_time = (m_old_delta)?((m_new_delta - m_old_delta) / 1000.0f):0;
+
 }
 
 void AppWindow::onDestroy()
